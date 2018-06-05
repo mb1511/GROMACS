@@ -22,7 +22,7 @@ echo `cat $PBS_NODEFILE | uniq`
 cat $PBS_NODEFILE > machine.file.$PBS_JOBID
 numnodes=`wc $PBS_NODEFILE | awk '{print $1}'`
 
-echo 15 | mpirun -np 1 -machinefile machine.file.$PBS_JOBID gmx_mpi pdb2gmx -f cc1.pdb -p topol.top -i posre.itp -o proc_pdb.gro -water spce -missing
+echo 15 | mpirun -np 1 -machinefile machine.file.$PBS_JOBID gmx_mpi pdb2gmx -f protein.pdb -p topol.top -i posre.itp -o proc_pdb.gro -water spce -missing
 mpirun -np 1 -machinefile machine.file.$PBS_JOBID gmx_mpi editconf -f proc_pdb.gro -o new_box.gro -c -d 1.0 -bt cubic
 mpirun -np 1 -machinefile machine.file.$PBS_JOBID gmx_mpi solvate -cp new_box.gro -cs spc216.gro -o new_solv.gro -p topol.top
 mpirun -np 1 -machinefile machine.file.$PBS_JOBID gmx_mpi grompp -f ions.mdp -c new_solv.gro -p topol.top -o ions.tpr -po mdout.mdp
