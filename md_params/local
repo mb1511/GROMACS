@@ -1,0 +1,3 @@
+#!/bin/bash
+scp -r ../test_md mb1511@bluecrystalp3.acrc.bris.ac.uk:~/md
+ssh -X mb1511@bluecrystalp3.acrc.bris.ac.uk 'cd md/test_md; qsub gmxqs'
