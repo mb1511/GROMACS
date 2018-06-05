@@ -951,7 +951,7 @@ def make_mdp(file_path, **kw):
 
 if __name__ == '__main__':
     USER = 'user'
-    test = Gmx('mol.pdb', cwd='../../md_params', remote=True, mpi=True, ssh_key='', hrs=24, num_nodes=1, gpu=1)
+    test = Gmx('mol.pdb', cwd='./md_params', remote=True, mpi=True, ssh_key='', hrs=24, num_nodes=1, gpu=1)
     run = test.run_basic(
         all_remote=True,
         trjconv=dict(center_group=1, out_group=1),
